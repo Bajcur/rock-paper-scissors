@@ -9,7 +9,7 @@ function getComputerChoice(){
 }
 
 
-//const computerSelection = "scissors";
+const computerSelection = getComputerChoice();
 //const playerSelection = prompt("Chose between Rock, Paper and Scissors!").toLowerCase();
 
 function playRound(playerSelection, computerSelection){
@@ -37,7 +37,24 @@ function playRound(playerSelection, computerSelection){
         return result
     }
 }
+let playerScore = 0;
+let computerScore = 0;
 
+const buttons = document.querySelectorAll('button');
+
+
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        console.log(button.id);
+        console.log(computerSelection);
+        playRound(button.id, computerSelection);
+        })
+});
+
+
+//console.log(playerSelection);
+
+/*
 function game(){
     let playerScore = 0;
     let computerScore = 0;
@@ -67,6 +84,7 @@ function game(){
 }
 
 game()
+*/
 //console.log(computerSelection);
 //console.log(playRound(playerSelection, computerSelection)[0]);
 
