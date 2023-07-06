@@ -2,55 +2,53 @@
 
 
 const rps = ["rock", "paper", "scissors"];
+let result = ['', ''];
 
 function getComputerChoice(){
     let choice = rps[(Math.floor(Math.random() * rps.length))]
     return choice
-}
+};
 
 
 const computerSelection = getComputerChoice();
 //const playerSelection = prompt("Chose between Rock, Paper and Scissors!").toLowerCase();
 
-function playRound(playerSelection, computerSelection){
-    
+function playRound(playerSelection, computerSelection){ 
     if (playerSelection === "rock" && computerSelection === "scissors") {
-        let result = ["win", "You Win! Rock beats Scissors!"];
-        return result                
+        result = ["win", "You Win! Rock beats Scissors!"];
+                        
     } else if(playerSelection === "rock" && computerSelection === "paper"){
-        let result = ["lost", "You Lose! Rock loses to Paper!"];
-        return result
+        result = ["lost", "You Lose! Rock loses to Paper!"];
+        
     } else if (playerSelection === "paper" && computerSelection === "rock") {
-        let result = ["win", "You Win! Paper beats Rock!"];
-        return result
+        result = ["win", "You Win! Paper beats Rock!"];
+        
     } else if (playerSelection === "paper" && computerSelection === "scissors") {
-        let result = ["lost", "You Lose! Paper loses to Scissors!"];
-        return result
+        result = ["lost", "You Lose! Paper loses to Scissors!"];
+        
     } else if (playerSelection === "scissors" && computerSelection === "paper") {
-        let result = ["win", "You Win! Scissors beats Paper!"];
-        return result
+        result = ["win", "You Win! Scissors beats Paper!"];
+        
     } else if (playerSelection === "scissors" && computerSelection === "rock") {
-        let result = ["lost", "You Lose! Scissors loses to Rock!"];
-        return result
+        result = ["lost", "You Lose! Scissors loses to Rock!"];
+        
     } else {
-        let result = ["draw", "It's a Draw!"];
-        return result
+        result = ["draw", "It's a Draw!"];
+        
     }
-}
-let playerScore = 0;
-let computerScore = 0;
+    document.getElementById('p1').innerHTML = result;
+};
+//playRound('rock', getComputerChoice());
 
 const buttons = document.querySelectorAll('button');
+//rock.addEventListener('click', playRound(rock.id, getComputerChoice()));
 
-
-buttons.forEach((button) => {
+buttons.forEach((button) => { 
     button.addEventListener('click', () => {
         console.log(button.id);
-        console.log(computerSelection);
-        playRound(button.id, computerSelection);
-        })
+        result = playRound(button.id, getComputerChoice());
+        });
 });
-
 
 //console.log(playerSelection);
 
