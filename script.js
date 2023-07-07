@@ -3,6 +3,8 @@
 
 const rps = ["rock", "paper", "scissors"];
 let result = ['', ''];
+let playerScore = 0;
+let computerScore = 0;
 
 function getComputerChoice(){
     let choice = rps[(Math.floor(Math.random() * rps.length))]
@@ -12,6 +14,35 @@ function getComputerChoice(){
 
 const computerSelection = getComputerChoice();
 //const playerSelection = prompt("Chose between Rock, Paper and Scissors!").toLowerCase();
+function gameScore(result){
+    if (result[0] === "win"){
+        playerScore++;
+    } else if (result[0] === "lost"){
+        computerScore++;
+    }
+    
+    document.getElementById("playerScore").textContent = playerScore;
+    document.getElementById("computerScore").textContent = computerScore;
+    if (playerScore === 5){
+        checkWinner("Player");
+    } else if (computerScore === 5){
+        checkWinner("Computer");
+    }
+
+}
+function checkWinner(whoWon){
+    const winner = document.createElement('h1');
+    const results = document.getElementById('results');
+    winner.setAttribute("id", "winner");
+    results.appendChild(winner);
+    if (whoWon === "Player"){
+        document.getElementById("winner").textContent = "You've won! Congratulations! If you want to play again press F5.";
+        stopTheCount();
+    } else if (whoWon === "Computer"){
+        document.getElementById("winner").textContent = "You've lost! Better luck next time! If you want to play again press F5.";
+        stopTheCount();
+    }
+}
 
 function playRound(playerSelection, computerSelection){ 
     if (playerSelection === "rock" && computerSelection === "scissors") {
@@ -36,8 +67,17 @@ function playRound(playerSelection, computerSelection){
         result = ["draw", "It's a Draw!"];
         
     }
-    document.getElementById('p1').innerHTML = result;
+    gameScore(result);
+
+    document.getElementById("p1").textContent = result[1];
+    document.getElementById("results")
 };
+
+function stopTheCount(){
+    buttons.forEach((button) => {
+        button.disabled = true;
+    });
+}
 //playRound('rock', getComputerChoice());
 
 const buttons = document.querySelectorAll('button');
